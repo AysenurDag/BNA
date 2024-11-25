@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Crypto Trading Bot API
+  version: 1.0.0
+  description: API for crypto trading bot using Binance
+
+paths:
+  /api/trading/price/{symbol}:
+    get:
+      summary: Get current price for a symbol
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Current price
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                  price:
+                    type: number
+
+  /api/trading/order:
+    post:
+      summary: Place a buy/sell order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                symbol:
+                  type: string
+                quantity:
+                  type: number
+                isBuy:
+                  type: boolean
+      responses:
+        '200':
+          description: Order placed successfully
+
+  /api/trading/strategies:
+    get:
+      summary: Get active trading strategies
+      responses:
+        '200':
+          description: List of active strategies

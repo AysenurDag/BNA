@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Bot</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Trading Bot</h1>
+        
+        <div class="card">
+            <h2>Price Check</h2>
+            <div class="input-group">
+                <div class="autocomplete">
+                    <input type="text" id="symbolInput" placeholder="Enter symbol (e.g., BTCUSDT)">
+                    <div id="symbolSuggestions" class="suggestions"></div>
+                </div>
+                <button onclick="checkPrice()">Check Price</button>
+            </div>
+            <div id="priceResult" class="result"></div>
+            <canvas id="priceChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>Place Order</h2>
+            <div class="input-group">
+                <div class="autocomplete">
+                    <input type="text" id="orderSymbol" placeholder="Symbol" class="wide-input">
+                    <div id="orderSymbolSuggestions" class="suggestions"></div>
+                </div>
+                <input type="number" id="orderQuantity" placeholder="Quantity" step="0.0001">
+                <select id="orderType">
+                    <option value="true">Buy</option>
+                    <option value="false">Sell</option>
+                </select>
+                <button onclick="placeOrder()">Place Order</button>
+            </div>
+            <div class="input-group">
+                <input type="number" id="stopLoss" placeholder="Stop Loss %" step="0.01">
+                <input type="number" id="takeProfit" placeholder="Take Profit %" step="0.01">
+            </div>
+            <div id="orderResult" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h2>Active Strategies</h2>
+            <div class="strategy-controls">
+                <button onclick="getStrategies()">Refresh Strategies</button>
+                <button onclick="toggleMonitoring()" id="monitoringButton">Start Monitoring</button>
+            </div>
+            <div id="strategiesResult" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h2>Backtesting</h2>
+            <div class="input-group">
+                <div class="autocomplete">
+                    <input type="text" id="backtestSymbol" placeholder="Symbol">
+                    <div id="backtestSymbolSuggestions" class="suggestions"></div>
+                </div>
+                <input type="datetime-local" id="startDate">
+                <input type="datetime-local" id="endDate">
+                <button onclick="runBacktest()">Run Backtest</button>
+            </div>
+            <div id="backtestResult" class="result">
+                <canvas id="backtestChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
